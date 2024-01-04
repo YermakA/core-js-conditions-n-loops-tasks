@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,15 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  const arr = [a, b, c];
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i += 1) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
 }
 
 /**
@@ -60,8 +67,74 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  for (let i = 1; i <= 8; i += 1) {
+    if (queen.x === king.x && i === king.y) {
+      return true;
+    }
+    if (i === king.x && queen.y === king.y) {
+      return true;
+    }
+  }
+
+  if (queen.x > queen.y) {
+    let { x, y } = queen;
+    while (x <= 8) {
+      if (x === king.x && y === king.y) {
+        return true;
+      }
+      x += 1;
+      y += 1;
+    }
+    x = queen.x;
+    y = queen.y;
+    while (x >= 1) {
+      if (x === king.x && y === king.y) {
+        return true;
+      }
+      x -= 1;
+      y += 1;
+    }
+    x = queen.x;
+    y = queen.y;
+    while (y >= 1) {
+      if (x === king.x && y === king.y) {
+        return true;
+      }
+      x -= 1;
+      y -= 1;
+    }
+  } else {
+    let { x, y } = queen;
+    x = queen.x;
+    y = queen.y;
+    while (y <= 8) {
+      if (x === king.x && y === king.y) {
+        return true;
+      }
+      x += 1;
+      y += 1;
+    }
+    x = queen.x;
+    y = queen.y;
+    while (y >= 1) {
+      if (x === king.x && y === king.y) {
+        return true;
+      }
+      x += 1;
+      y -= 1;
+    }
+    x = queen.x;
+    y = queen.y;
+    while (x >= 1) {
+      if (x === king.x && y === king.y) {
+        return true;
+      }
+      x -= 1;
+      y -= 1;
+    }
+  }
+  return false;
 }
 
 /**
